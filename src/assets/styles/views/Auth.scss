@@ -1,0 +1,45 @@
+.auth {
+    @include landing;
+    background-color: rgb(245, 245, 245);
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: #fff;
+        padding: 40px;
+        border-radius: $rounded;
+        width: 750px;
+        box-sizing: border-box;
+        .form-step {
+            width: 100%;
+        }
+        
+        input {
+            @include input;
+            margin-bottom: 10px;
+        }
+        button {
+            @include button;
+            font-size:1.1rem;
+            margin-top: 30px;
+            align-self: flex-end;
+        }
+    }
+    &.login {
+        form {
+            width: 500px;
+            .b-contain {
+                margin-top: 20px;
+            }
+            button {
+                align-self: center;
+                margin-top: 20px;
+            }     
+        }
+        .link {
+            margin-top: 30px;
+            // font-size: 0.8rem;
+        }
+    }
+}
