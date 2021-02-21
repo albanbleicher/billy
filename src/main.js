@@ -6,12 +6,15 @@ import './assets/styles/App.scss'
 Vue.config.productionTip = false
 import { firestorePlugin } from 'vuefire'
 import './config'
-Vue.use(firestorePlugin)
 import moment from 'moment'
 moment.locale('fr')
+import VueMoment from 'vue-moment'
+Vue.use(VueMoment, {
+  moment,
+})
+Vue.use(firestorePlugin)
 new Vue({
   router,
   store,
-  moment,
   render: h => h(App)
 }).$mount('#app')

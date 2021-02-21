@@ -1,5 +1,6 @@
 @import './Home.scss';
 .nav {
+    user-select: none;
     position: absolute;
     top: 70px;
     right: 100px;
@@ -12,6 +13,46 @@
             &:not(:last-child) {
                 margin-right: 20px;
             }
+           .dropdown {
+            svg {
+                stroke:$primary;
+                cursor: pointer;
+                transition: opacity 0.5s;
+                &:hover {
+                    opacity: 0.6;
+                }
+            }
+            position: relative;
+            .collapse {
+                &.hidden {
+                display: none;
+
+                }
+                background-color: white;
+                padding: 15px;
+                border-radius: $rounded;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                right: 0;
+                width: calc( max-content + 50px);
+                text-align: right;
+                align-items: flex-end;
+            box-shadow: 1px 1px 30px rgba(rgb(46, 46, 46), .1);
+
+                li {
+                     
+                        margin-right: 0;
+                        margin:10px;
+                    
+                }
+                a {
+                    color: $primary;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+           }
             a {
                 &.router-link-active {
                     &::after {

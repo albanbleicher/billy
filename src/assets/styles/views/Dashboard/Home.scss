@@ -2,6 +2,7 @@
     padding:  70px 100px;
     box-sizing: border-box;
     .header {
+        user-select: none;
         h1 {
             margin:0;
             font-size: 4rem;
@@ -11,5 +12,33 @@
             margin-top: 0;
             color: $text-color;
         }
+    }
+    .stats {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-top: 30px;
+        .stats-block {
+            width: 300px;
+            font-size: 1.7rem;
+            box-shadow: 1px 1px 30px rgba(rgb(46, 46, 46), .1);
+            background-color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            font-weight: 600;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-radius: $rounded;
+            .value {
+                color: $primary;
+            }
+        }
+    }
+    .recents {
+        color: $text-color;
+        font-size: 1.5rem;
     }
 }
