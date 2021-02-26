@@ -1,8 +1,12 @@
 <template>
   <div class="auth login">
     <h1>Vous revoilà! ☀️</h1>
-
-    <form @submit.prevent="send">
+    <transition name="fade" mode="out-in">
+      <div v-if="loginError" class="alert-danger">
+        {{ loginError }}
+      </div>
+    </transition>
+    <form ref="form" @submit.prevent="send">
       <input type="email" v-model="identity.mail" placeholder="Mail" />
       <input
         type="password"
@@ -17,7 +21,8 @@
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
+import gsap from 'gsap'
 export default {
   data() {
     return {
@@ -28,7 +33,23 @@ export default {
       }
     }
   },
-
+  computed: {
+    ...mapGetters('Auth', ['loginError'])
+  },
+  watch: {
+    loginError: {
+      handler: function() {
+        const timeline = gsap.timeline()
+        timeline.to(this.$refs['form'], { x: -20, duration: 0.1 })
+        timeline.to(this.$refs['form'], { x: 20, duration: 0.1 })
+        timeline.to(this.$refs['form'], { x: -20, duration: 0.1 })
+        timeline.to(this.$refs['form'], { x: 20, duration: 0.1 })
+        timeline.to(this.$refs['form'], { x: -20, duration: 0.1 })
+        timeline.to(this.$refs['form'], { x: 20, duration: 0.1 })
+        timeline.to(this.$refs['form'], { x: 0, duration: 0.2 })
+      }
+    }
+  },
   methods: {
     ...mapActions('Auth', ['login', 'logout']),
     send() {

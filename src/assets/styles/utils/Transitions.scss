@@ -9,3 +9,15 @@
 .fade-leave-active {
   opacity: 0
 }
+
+.zoom-enter-active,
+.zoom-leave-active {
+  transition-duration: 0.3s;
+  transition-property: transform;
+  transition-timing-function: ease;
+}
+
+.zoom-enter,
+.zoom-leave-active {
+  transform: scale(0);
+}

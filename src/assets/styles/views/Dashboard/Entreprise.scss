@@ -1,0 +1,18 @@
+.entreprise {
+    @include container;
+    label {
+        color: $primary;
+    }
+    .content {
+        margin-top: 50px;
+        form {
+            button {
+                @include button
+            }
+        }
+        .preview {
+            width: 150px;
+            height: auto;
+        }
+    }
+}

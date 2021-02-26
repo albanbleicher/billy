@@ -1,21 +1,27 @@
 <template>
-  <div v-if='!loading' class="app_home">
+  <div v-if="!loading" class="app_home">
     <div class="header">
-      <h1>Hello {{ userData.prenom }}</h1>
+      <h1>Hello {{ currentUser.prenom }}</h1>
       <p>Bienvenue sur votre espace d'administration</p>
     </div>
     <div class="stats">
       <div class="stats-block">
-        <span>{{ new Date() | moment("dddd Do MMMM  YYYY") }}</span>
+        <span>{{ new Date() | moment('dddd Do MMMM  YYYY') }}</span>
       </div>
       <div class="stats-block">
-        <span><span class="value">34</span> clients</span>
+        <span
+          ><span class="value">{{ clients }}</span> clients</span
+        >
       </div>
       <div class="stats-block">
-        <span><span class="value">28</span> devis</span>
+        <span
+          ><span class="value">{{ devis }}</span> devis</span
+        >
       </div>
       <div class="stats-block">
-        <span><span class="value">7</span> factures</span>
+        <span
+          ><span class="value">{{ factures }}</span> factures</span
+        >
       </div>
     </div>
     <div class="recents">
@@ -28,18 +34,24 @@ import { mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
-      loading:true
+      loading: true,
+      modal: false
     }
   },
   computed: {
-    ...mapGetters('Auth', ['currentUserId', 'userData'])
+    ...mapGetters('Auth', ['currentUser']),
+    ...mapGetters('Stats', ['devis', 'factures', 'clients'])
   },
-  async created() {
-    await this.getUserData(this.currentUserId)
-    this.loading=false;
+  mounted() {
+    this.getStats()
+    this.loading = false
+    setTimeout(() => {
+      this.modal = true
+    }, 2000)
   },
   methods: {
-    ...mapActions('Auth', ['getUserData', 'logout'])
+    ...mapActions('Auth', ['logout']),
+    ...mapActions('Stats', ['getStats'])
   }
 }
 </script>

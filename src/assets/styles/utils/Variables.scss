@@ -1,5 +1,11 @@
-$background: #FAFAFA;
-$primary: #018583;
-$secondary: #353aba;
+$background: #fafafa;
+$primary: #00ae88;
+$secondary: #e3e3e3;
+$error: rgb(237, 141, 141);
 $rounded:10px;
 $text-color: transparentize(#000, 0.5);
+$grey:red;
+:export {
+    primary: $primary;
+    secondary: $secondary;
+}

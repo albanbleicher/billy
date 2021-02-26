@@ -1,6 +1,13 @@
 .auth {
     @include landing;
     background-color: rgb(245, 245, 245);
+    .alert-danger {
+        padding: 10px 20px;
+        border-radius: $rounded;
+        color: #fff;
+        background-color:$error;
+        margin-bottom: 20px;
+    }
     form {
         display: flex;
         justify-content: center;
@@ -16,7 +23,6 @@
         }
         
         input {
-            @include input;
             margin-bottom: 10px;
         }
         button {

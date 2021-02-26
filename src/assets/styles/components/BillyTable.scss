@@ -1,0 +1,44 @@
+.billy-table {
+    width: 100%;
+    background-color: white;
+    padding:30px;
+    border-radius: $rounded;
+    box-shadow: 1px 1px 30px rgba(#000, .1);
+    max-width: 1500px;
+    box-sizing: border-box;
+    overflow:scroll;
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 750px;
+    button {
+        @include button;
+    }
+
+    table-layout: fixed;
+    thead {
+        th {
+            text-align: left;
+            font-weight: 600;
+            color: $primary;
+            border-bottom: 2px solid transparentize($text-color, 0.3);
+            padding-bottom: 20px;
+        }
+    }
+    tbody {
+        tr {
+            color: $text-color;
+            &:first-child {
+                td {
+                    padding-top: 30px;
+                }
+            }
+           &:not(:last-child) {
+            td {
+                padding-bottom: 30px;
+            }
+           }
+        }
+    }
+    }
+}

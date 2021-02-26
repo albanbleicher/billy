@@ -4,6 +4,11 @@
 
     <form>
       <transition name="fade" mode="out-in">
+        <div v-if="errorMessage" class="alert-danger">
+          {{ errorMessage }}
+        </div>
+      </transition>
+      <transition name="fade" mode="out-in">
         <div v-if="step === 1" class="form-step" :key="1">
           <div class="form-group group-2">
             <input type="text" v-model="identity.prenom" placeholder="Prénom" />
@@ -64,21 +69,23 @@
           />
         </div>
       </transition>
-      <button type="button" @click="step !== 2 ? step++ : send">
+      <button type="button" @click="step === 1 ? checkIdentity() : send()">
         {{ step === 2 ? 'Valider' : 'Suivant' }}
       </button>
     </form>
   </div>
 </template>
 <script>
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
+      errorMessage: '',
       identity: {
-        prenom: null,
-        nom: null,
-        mail: null,
-        password: null
+        prenom: '',
+        nom: '',
+        mail: '',
+        password: ''
       },
       mailConf: '',
       passwordConf: '',
@@ -104,8 +111,36 @@ export default {
     }
   },
   methods: {
+    ...mapActions('Auth', ['register']),
+    checkIdentity() {
+      if (
+        this.identity.prenom === '' ||
+        this.identity.prenom === '' ||
+        this.identity.mail === '' ||
+        this.mailConf === '' ||
+        this.identity.password === '' ||
+        this.passwordConf === ''
+      ) {
+        this.errorMessage = 'Merci de remplir tous les champs'
+      } else {
+        if (this.identity.mail != this.mailConf) {
+          this.errorMessage = 'Les adresses mails ne sont pas identiques'
+        } else {
+          if (this.identity.password != this.passwordConf) {
+            this.errorMessage = 'Les mots de passes ne sont pas identiques'
+          } else {
+            this.step = 2
+            this.errorMessage = null
+          }
+        }
+      }
+    },
     send() {
-      console.log('ok')
+      const data = {
+        entreprise: this.entreprise,
+        identity: this.identity
+      }
+      this.register(data)
     }
   }
 }

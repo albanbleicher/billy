@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import App from './App'
-import store from '@/store/index'
 import { getCurrentUser } from '../config'
 Vue.use(VueRouter)
 const title = 'Billy'
@@ -67,6 +66,7 @@ const router = new VueRouter({
 router.beforeEach(async (to, from, next) => {
   const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
   if (requiresAuth && !(await getCurrentUser())) {
+    console.log('ok')
     next({
       path: '/'
     })
@@ -74,20 +74,14 @@ router.beforeEach(async (to, from, next) => {
     next()
   }
   if (!requiresAuth && (await getCurrentUser())) {
+    console.log('ok')
     next({
       path: '/app'
     })
   } else {
     next()
   }
-  if (await getCurrentUser()) {
-    const user = await getCurrentUser()
-    const user_data = {
-      email: user.email,
-      uid: user.uid
-    }
-    store.commit('Auth/SET_USER', user_data)
-  }
+
   document.title = title + ' — ' + to.meta.title
 })
 export default router

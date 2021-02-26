@@ -1,0 +1,9 @@
+.file-input-button {
+    @include button;
+    width: max-content !important;
+    margin: 5px 0;
+
+    input[type='file'] {
+        display: none;
+    }
+}

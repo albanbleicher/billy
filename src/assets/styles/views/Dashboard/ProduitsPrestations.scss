@@ -1,0 +1,31 @@
+.produits-prestations {
+    @include container;
+    .tabs {
+
+        margin-top: 20px;
+        width: 100%;
+        .tabs-header {
+            display: flex;
+            .tab-header {
+                width: 100%;
+                text-align: center;
+                align-items: center;
+                padding: 15px;
+                box-sizing: border-box;
+                color: $text-color;
+                cursor: pointer;
+                transition:opacity 0.4s;
+                &:hover {
+                    opacity: 0.4;
+                }
+                &.active {
+                    color: $primary;
+                    border-bottom: 2px solid $primary;
+                }
+            }
+        }
+        .tabs-content {
+            margin-top: 20px;
+        }
+    }
+}

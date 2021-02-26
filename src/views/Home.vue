@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="nav">
-      <ul ref='nav'>
+      <ul ref="nav">
         <li>
           <router-link class="link" to="/auth/login">Connexion</router-link>
         </li>
@@ -20,11 +20,17 @@
 import gsap from 'gsap'
 export default {
   mounted() {
-    const timeline = gsap.timeline();
-    timeline.from(this.$refs['title'], {y:40, opacity:0, duration:0.5})
-    timeline.from(this.$refs['sub'], {y:-40, opacity:0, duration:0.5})
+    const timeline = gsap.timeline()
+    timeline.from(this.$refs['title'], { y: 40, opacity: 0, duration: 0.5 })
+    timeline.from(this.$refs['sub'], { y: -40, opacity: 0, duration: 0.5 })
 
-    timeline.from(this.$refs['nav'].children, {y:-40, opacity:0, duration:1, ease:'back', stagger:0.5})
+    timeline.from(this.$refs['nav'].children, {
+      y: -40,
+      opacity: 0,
+      duration: 1,
+      ease: 'back',
+      stagger: 0.5
+    })
   }
 }
 </script>

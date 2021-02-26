@@ -1,0 +1,12 @@
+.toasted-success {
+    background-color: $primary;
+    padding: 10px 20px !important;
+    border-radius: $rounded;
+    color: white;
+}
+.toasted-error {
+    background-color: $error;
+    padding: 10px 20px !important;
+    border-radius: $rounded;
+    color: white;
+}
